@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/jing_pic_hd" />
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/iv_user_header"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_above="@id/id_username"
+            android:src="@mipmap/me_pic_hd" />
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:id="@+id/id_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/id_link"
+            android:textColor="@color/white"
+            android:text="高亚辉" />
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:id="@+id/id_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            android:text="http://github.com/stayli117" />
+    </RelativeLayout>
+
+
+</layout>

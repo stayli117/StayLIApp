@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/activity_with_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.DrawerLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/dl_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bnve">
+
+            <android.support.design.widget.CoordinatorLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.AppBarLayout
+                    android:id="@+id/appbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/include_toolbar" />
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tl_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabTextColor="@color/selector_item_primary_color"
+                        app:tabSelectedTextColor="@android:color/holo_orange_light"
+                        app:tabIndicatorColor="@android:color/holo_orange_light"
+                        app:tabIndicatorHeight="1dp"
+                        app:tabMode="scrollable"
+                        android:background="#13f02f02"
+                        />
+
+                </android.support.design.widget.AppBarLayout>
+
+                <com.stayli.app.view.NoScrollViewPager
+                    android:id="@+id/vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_16"
+                    android:onClick="onClickFab"
+                    android:src="@mipmap/ic_toolbar_add"
+                    app:backgroundTint="@color/fab_ripple"
+                    app:layout_anchor="@id/vp"
+                    app:layout_anchorGravity="bottom|right|end" />
+
+            </android.support.design.widget.CoordinatorLayout>
+
+
+            <android.support.design.widget.NavigationView
+                android:id="@+id/ll_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                app:insetForeground="@android:color/transparent"
+                 />
+
+
+        </android.support.v4.widget.DrawerLayout>
+
+        <com.stayli.widget.bnv.CustomBottomNavigation
+            android:id="@+id/bnve"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/white"
+            app:itemIconTint="@color/selector_item_primary_color"
+            app:itemTextColor="@color/selector_item_primary_color"
+            app:menu="@menu/menu_navigation_center_fab" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_camera_black_24dp"
+            android:tint="@color/colorGray"
+            app:backgroundTint="@color/selector_item_center_primary_color"
+            app:borderWidth="0dp"
+            app:elevation="9dp" />
+
+    </RelativeLayout>
+</layout>

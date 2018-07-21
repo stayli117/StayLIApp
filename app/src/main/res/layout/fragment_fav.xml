@@ -1,0 +1,87 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- TODO: Update blank fragment layout -->
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/sp_com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_20"
+            android:gravity="center">
+
+        </Spinner>
+
+        <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:id="@+id/til_mobile"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/dp_16"-->
+        <!--android:layout_marginRight="@dimen/dp_16"-->
+        <!--android:layout_marginTop="@dimen/dp_16"-->
+        <!--app:counterEnabled="true"-->
+        <!--app:counterMaxLength="11">-->
+
+        <!--<android.support.design.widget.TextInputEditText-->
+        <!--android:id="@+id/et_mobile"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:drawableLeft="@mipmap/ic_mobile"-->
+        <!--android:drawablePadding="@dimen/dp_4"-->
+        <!--android:drawableStart="@mipmap/ic_mobile"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:hint="请输入快递公司"-->
+        <!--android:inputType="text" />-->
+
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_16"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ic_password"
+                android:drawablePadding="@dimen/dp_4"
+                android:drawableStart="@mipmap/ic_password"
+                android:gravity="center_vertical"
+                android:hint="查询单号" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_16"
+            android:background="@color/blue"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16" />
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_16"
+            app:menu="@menu/menu_kd_com" />
+
+    </LinearLayout>
+
+
+</layout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@mipmap/ic_toolbar_search"
+        android:title="搜索"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+    <item
+        android:id="@+id/action_item_one"
+        android:title="好友"
+        android:icon="@mipmap/ic_toolbar_add"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_one"
+        android:title="提示"
+        android:icon="@mipmap/ic_toolbar_order_72"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_notification"
+        android:title="消息"
+        android:icon="@mipmap/ic_toolbar_order"
+        app:showAsAction="ifRoom" />
+
+
+
+
+</menu>
