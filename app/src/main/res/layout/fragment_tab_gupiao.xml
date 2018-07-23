@@ -20,7 +20,14 @@
             android:clipToPadding="false"
             android:divider="@color/transparent"
             android:dividerHeight="0dp"
-            android:paddingTop="@dimen/dp_8" />
+            android:paddingTop="@dimen/dp_8"
+            android:visibility="gone" />
+
+        <com.stayli.custom.SquareImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
 
     </android.support.design.widget.CoordinatorLayout>
 

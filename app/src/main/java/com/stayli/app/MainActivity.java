@@ -71,7 +71,6 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
     private ColorStateList mBackgroundTintList;
     private MusicFragment musicFragment;
 
-
     private ArrayList<Fragment> fragmentList;
     private BottomItemListener itemSelectedListener;
     private ViewPagerChangeListener mViewPagerChangeListener;

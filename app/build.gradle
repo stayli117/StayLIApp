@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+
+
     signingConfigs {
         release {
             keyAlias 'gyh'
@@ -138,8 +140,22 @@ dependencies {
 
 
 
-apply plugin: 'com.gyh'
+apply plugin: 'com.gyh.plugin'
 
 channel {
     include 'abc'
+}
+
+// 过滤第三方jar包中的类
+jarFilters {
+    //待过滤包名
+    "com.android.support:appcompat-v7:(.*)" {
+        excludes = [
+//                'android/support/v7/app/AppCompatActivity.class', // 具体主类
+//                'android/support/v7/app/AppCompatActivity\\$(.*).class' // 内部类
+        ]
+        includes = [
+                // 需要包含的类
+        ]
+    }
 }
