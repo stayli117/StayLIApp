@@ -3,7 +3,7 @@ package com.stayli.app.app;
 import android.app.Application;
 
 import com.huawei.android.hms.agent.HMSAgent;
-import com.stayli.app.api.NetAPIManager;
+import com.stayli.app.model.api.NetAPIManager;
 import com.stayli.app.utils.Util;
 
 /**

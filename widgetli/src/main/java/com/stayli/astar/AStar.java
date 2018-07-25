@@ -17,8 +17,8 @@ public class AStar {
     public final static int DIRECT_VALUE = 10; // 横竖移动代价
     public final static int OBLIQUE_VALUE = 14; // 斜移动代价
 
-    Queue<Node> openList = new PriorityQueue<Node>(); // 优先队列(升序)
-    List<Node> closeList = new ArrayList<Node>();
+    private Queue<Node> openList = new PriorityQueue<Node>(); // 优先队列(升序)
+    private List<Node> closeList = new ArrayList<Node>();
 
     public static interface IPath {
         void onStep(Coord maps);
@@ -69,7 +69,6 @@ public class AStar {
         while (end != null) {
             Log.e("ll", "drawPath: " + end);
             Coord c = end.coord;
-//            maps[c.y][c.x] = PATH;
             end = end.parent;
             mIPath.onStep(c);
         }

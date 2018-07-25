@@ -22,8 +22,8 @@ import android.util.Log;
 
 import com.stayli.app.MainActivity;
 import com.stayli.app.R;
-import com.stayli.app.databsae.DBJieQi;
-import com.stayli.app.databsae.DbManager;
+import com.stayli.app.model.database.DBJieQi;
+import com.stayli.app.model.database.DbManager;
 import com.stayli.app.utils.DateUtils;
 import com.stayli.app.utils.Util;
 

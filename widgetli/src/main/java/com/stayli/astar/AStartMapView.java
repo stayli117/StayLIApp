@@ -20,6 +20,7 @@ import java.util.Collections;
 
 public class AStartMapView extends View {
     private static final String TAG = "AStartMapView";
+    // 地图点
     final int[][] dmaps = {
             {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -36,6 +37,7 @@ public class AStartMapView extends View {
 
     };
 
+    // 地图大小
     int[][] maps = new int[12][15];
 
     private Paint mPaint;
@@ -147,6 +149,9 @@ public class AStartMapView extends View {
         invalidate();
     }
 
+    /**
+     * 重置
+     */
     public void reset() {
         final int[][] dmaps = {
                 {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},

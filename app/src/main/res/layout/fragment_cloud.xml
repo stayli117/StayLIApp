@@ -15,7 +15,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.stayli.app.view.recycle.MyRecycleView
+        <com.stayli.app.ui.view.recycle.MyRecycleView
             android:id="@+id/rv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

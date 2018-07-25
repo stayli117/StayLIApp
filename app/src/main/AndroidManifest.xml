@@ -44,10 +44,10 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".base.BaseActivity" />
-        <activity android:name=".act.PaletteDetailActivity" />
-        <activity android:name=".act.BookDetailActivity" />
+        <activity android:name=".ui.act.PaletteDetailActivity" />
+        <activity android:name=".ui.act.BookDetailActivity" />
         <activity
-            android:name=".act.SplashActivity"
+            android:name=".ui.act.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme">
@@ -58,13 +58,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".qrcode.DefaultCaptureActivity"
+            android:name=".ui.qrcode.DefaultCaptureActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".qrcode.WeChatCaptureActivity"
+            android:name=".ui.qrcode.WeChatCaptureActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".qrcode.AliCaptureActivity" />
-        <activity android:name=".bd_fanyi.FanYiActivity" />
+        <activity android:name=".ui.qrcode.AliCaptureActivity" />
+        <activity android:name=".ui.bd_fanyi.FanYiActivity" />
         <activity
             android:name="com.huawei.hms.activity.BridgeActivity"
             android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale"

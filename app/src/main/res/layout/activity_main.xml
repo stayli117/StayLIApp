@@ -44,7 +44,7 @@
 
                 </android.support.design.widget.AppBarLayout>
 
-                <com.stayli.app.view.NoScrollViewPager
+                <com.stayli.app.ui.view.NoScrollViewPager
                     android:id="@+id/vp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
