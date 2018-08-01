@@ -27,27 +27,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.stayli.app.tools.adapter.frag.VpAdapter;
+import com.stayli.app.base.BaseActivity;
+import com.stayli.app.base.BaseFragment;
+import com.stayli.app.databinding.ActivityMainBinding;
+import com.stayli.app.databinding.LayoutNavHeaderBinding;
+import com.stayli.app.listener.BottomItemListener;
+import com.stayli.app.listener.FabClickListener;
+import com.stayli.app.listener.ViewPagerChangeListener;
 import com.stayli.app.model.api.DBInterface;
 import com.stayli.app.model.api.LunarJIeQi;
 import com.stayli.app.model.api.NetAPIManager;
-import com.stayli.app.base.BaseActivity;
-import com.stayli.app.base.BaseFragment;
-import com.stayli.app.ui.bd_fanyi.FanYiActivity;
-import com.stayli.app.databinding.ActivityMainBinding;
-import com.stayli.app.databinding.LayoutNavHeaderBinding;
 import com.stayli.app.model.database.DBJieQi;
 import com.stayli.app.model.database.DbManager;
 import com.stayli.app.model.domain.DBBook;
 import com.stayli.app.model.domain.JieQi;
+import com.stayli.app.tools.adapter.frag.VpAdapter;
+import com.stayli.app.ui.bd_fanyi.FanYiActivity;
 import com.stayli.app.ui.fragment.cloud.CloudFragment;
 import com.stayli.app.ui.fragment.favor.FavorFragment;
 import com.stayli.app.ui.fragment.friends.FriendsFragment;
 import com.stayli.app.ui.fragment.music.MusicFragment;
 import com.stayli.app.ui.fragment.visibility.VisibilityFragment;
-import com.stayli.app.listener.BottomItemListener;
-import com.stayli.app.listener.FabClickListener;
-import com.stayli.app.listener.ViewPagerChangeListener;
 import com.stayli.app.utils.DateUtils;
 import com.stayli.app.utils.DrawableUtil;
 import com.stayli.app.utils.SPUtils;
@@ -115,6 +115,11 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
                 }
             });
         }
+
+
+
+//        int v = 123456;
+//        byte[] bytes = ByteBuffer.allocate(4).putInt(v).array();
 
     }
 
