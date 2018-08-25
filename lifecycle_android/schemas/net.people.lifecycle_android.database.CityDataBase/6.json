@@ -1,0 +1,88 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 6,
+    "identityHash": "c969b81f9a4df45f37b9c9fc5c6a1bd7",
+    "entities": [
+      {
+        "tableName": "DbCityBean",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ctime` TEXT NOT NULL, `title` TEXT, `description` TEXT, `picUrl` TEXT NOT NULL, `url` TEXT, `city_name` TEXT, `last_update` TEXT, `news_id` INTEGER, `news_con` TEXT, `news_cont` TEXT, PRIMARY KEY(`ctime`, `picUrl`))",
+        "fields": [
+          {
+            "fieldPath": "ctime",
+            "columnName": "ctime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "picUrl",
+            "columnName": "picUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "city_name",
+            "columnName": "city_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "last_update",
+            "columnName": "last_update",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "news_id",
+            "columnName": "news_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "news_con",
+            "columnName": "news_con",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "news_cont",
+            "columnName": "news_cont",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ctime",
+            "picUrl"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c969b81f9a4df45f37b9c9fc5c6a1bd7\")"
+    ]
+  }
+}

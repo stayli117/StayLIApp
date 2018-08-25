@@ -1,0 +1,64 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "14fb97b4225ad995e9aa401baf756afd",
+    "entities": [
+      {
+        "tableName": "DBJieQi",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`jieqiid` TEXT NOT NULL, `name` TEXT NOT NULL, `pic` TEXT, `ctime` TEXT NOT NULL, `jtime` TEXT NOT NULL, `year` TEXT NOT NULL, PRIMARY KEY(`ctime`, `jtime`))",
+        "fields": [
+          {
+            "fieldPath": "jieqiid",
+            "columnName": "jieqiid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pic",
+            "columnName": "pic",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ctime",
+            "columnName": "ctime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jtime",
+            "columnName": "jtime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ctime",
+            "jtime"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"14fb97b4225ad995e9aa401baf756afd\")"
+    ]
+  }
+}
