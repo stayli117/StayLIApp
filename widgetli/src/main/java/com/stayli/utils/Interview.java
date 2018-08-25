@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 算法练习
+ */
 public class Interview {
 
 
@@ -33,20 +36,236 @@ public class Interview {
 //        int re = lengthOfLongestSubstring();
 //        System.out.println("长度：" + re);
 
-        longestPalindrome();
+        String s = longestPalindrome();
+        System.out.println("回文串： " + s);
 
-        int [] arr = {2,6,4,3,1,7,0,9};
+        int[] arr = {2, 6, 4, 3, 1, 7, 0, 9};
         // 0 6 4 3 1 7 2 9
         // 0 2 4 3 1 7 6 9
         // 0 1 4 3 2 7 6 9
         // 0 1 2 3 4 7 6 9
         //
+        // 两种快排 实质一样
 //        QuickSort.qsort(0,arr.length-1,arr);
 
-        QuickSort.sort(arr,0,arr.length-1);
+//        QuickSort.sort(arr,0,arr.length-1);
 //        for (int i : arr) {
 //            System.out.print(i+" ");
 //        }
+
+
+        //        node1.next = new SingleLinkList.Node<>("g");
+
+//        SingleLinkList<String> nodes = new SingleLinkList<>();
+//        nodes.add("a");
+//        nodes.add("b");
+//        nodes.add("c");
+//        nodes.add("d");
+//        nodes.add("e");
+//
+//        SingleLinkList.Node<String> node1 = new SingleLinkList.Node<>("f");
+//        nodes.add(node1);
+//        nodes.insert(2, new SingleLinkList.Node<>("h"));
+//        nodes.insert(0, new SingleLinkList.Node<>("i"));
+//        nodes.insert(nodes.size(), new SingleLinkList.Node<>("j"));
+//        String node = nodes.get(0);
+//        System.out.println("获取index = 0 节点：" + node);
+//
+//        nodes.display("打印全部节点：");
+//        nodes.remove(3);
+//        nodes.display("打印删除index = 3 之后：");
+//        nodes.remove(new SingleLinkList.Node<>("i"));
+//        nodes.display("打印删除 i 之后：");
+//        nodes.remove(new SingleLinkList.Node<>("h"));
+//        nodes.display("打印删除 h 之后：");
+
+
+//        nodes.insert(2, "k");
+//        nodes.insert(4, "w");
+//        nodes.insert(5, "h");
+//        nodes.display("排序前： ");
+
+//        insertSort();
+
+//        int fib = fib(18);
+//        System.out.println(fib);
+
+        // 对应长度的价格
+        int[] price = {3, 5, 8, 13, 14, 16, 18, 20, 24, 30};
+
+        int cut = buttom_up_cut(price);
+        int cut1 = bottomCut(price, price.length);
+        System.out.println(cut);
+        System.out.println(cut1);
+
+        int i = cutSz(8);
+        System.out.println(i);
+    }
+
+    /**
+     * 给你一根长度为N的绳子，请把绳子剪成M段（m,n都是整数），每段绳子的
+     * 长度记为k[0],k[1],k[2] … k[n]=n. 请问如何剪绳子使得k[0],k[1],k[2]
+     * 的乘积最大
+     * m 可以为0 即不切割，不切割默认乘1 k[0]=1
+     * <p>
+     * c[n]= Math.max(k[j]*c[n-j],c[n-1])
+     *
+     * @param n
+     * @return
+     */
+    public static int cutSz(int n) {
+
+        int c[] = new int[n + 1];
+        c[0] = 1;
+        for (int i = 1; i <= n; i++) { // 总长度
+            int value = 1;
+            for (int j = 1; j <= i; j++) { //每次切割的子长度
+                value = Math.max(j * c[(i - j)], value);
+            }
+            c[i] = value;
+            System.out.println(value);
+        }
+
+
+        return c[n];
+    }
+
+
+    /**
+     * i 表示需求求解的当前长度 1 <= i <=n
+     * j  表示上次求解的长度  j = i-1
+     * d[n] 表示当前n长度的价格 d(0)=0
+     * <p>
+     * d(i) = max(d(j)+d(i-j),d[j])
+     *
+     * @param price
+     * @param len
+     * @return
+     */
+    public static int bottomCut(int[] price, int len) {
+        int[] r = new int[len + 1];
+        r[0] = 0; // 长度=0 为不切割
+        for (int i = 1; i <= len; i++) {
+            // 子问题求解过程
+//            r[i] = cutSub(price, r, i);
+            int value = 0;
+            for (int j = 0; j < i; j++) {
+                value = Math.max(value, price[j] + r[i - j - 1]);
+            }
+            // 子问题求解过程
+            r[i] = value;
+        }
+        return r[len];
+    }
+
+    private static int cutSub(int[] price, int[] r, int i) {
+        int temp = 0;
+        for (int j = 1; j <= i; j++) {
+            temp = Math.max(price[j - 1] + r[i - j], temp);
+        }
+        return temp;
+    }
+
+    /**
+     * 动态规划
+     * 钢条切割练习
+     * 需要保存不同长度下的最优解
+     */
+    public static int buttom_up_cut(int[] p) {
+        int[] r = new int[p.length + 1];
+        // 计算切割不同长度时的最优解
+        for (int i = 1; i <= p.length; i++) {
+            int q = -1;
+            //求解长度为i时的最优解
+            for (int j = 1; j <= i; j++) {
+                q = Math.max(q, p[j - 1] + r[i - j]);
+            }
+            r[i] = q;
+        }
+        return r[p.length];
+    }
+
+    /**
+     * 自底向上
+     *
+     * @param n
+     * @return
+     */
+    public static int fib(int n) {
+        if (n <= 1)
+            return n;
+
+        int Memo_i_1 = 0; // 计算使用的第一个位置上的数据
+
+        int Memo_i_2 = 1; // 计算使用的第二个位置上的数据
+
+        int Memo_i = 1; // 计算的结果
+
+        for (int i = 2; i <= n; i++) {
+            Memo_i = Memo_i_1 + Memo_i_2;
+            Memo_i_1 = Memo_i_2;
+            Memo_i_2 = Memo_i;
+        }
+        return Memo_i;
+    }
+
+
+    /**
+     * 自顶向下 备忘录法
+     * 动态规划求解斐波那契数列
+     */
+    public static int fibonacciTop(int n) {
+
+        if (n <= 0) return n;
+
+        // 创建 备忘数组 赋初始值 -1
+        int[] Memo = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            Memo[i] = -1;
+        }
+
+        return fibTop(n, Memo);
+
+    }
+
+    private static int fibTop(int n, int[] Memo) {
+
+        if (Memo[n] != -1)
+            return Memo[n];
+        //如果已经求出了fib（n）的值直接返回，否则将求出的值保存在Memo备忘录中。
+        if (n <= 2) {
+            Memo[n] = 1;
+        } else {
+            Memo[n] = fibTop(n - 1, Memo) + fibTop(n - 2, Memo);
+        }
+
+        return Memo[n];
+    }
+
+    /**
+     * 插入排序
+     */
+    public static void insertSort() {
+        int[] array = {38, 36, 56, 17, 69, 45, 13, 27};
+
+        int len = array.length;
+        int j, temp;        //temp：记录
+        for (int i = 1; i < len; i++) {
+            if (array[i - 1] > array[i]) {
+                temp = array[i];
+                for (j = i - 1; j >= 0; j--) {
+                    if (array[j] > temp) {
+                        array[j + 1] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            }
+        }
+
+        for (int i : array) {
+            System.out.print(i + " ");
+        }
+
     }
 
     /**
@@ -64,17 +283,18 @@ public class Interview {
      * @return s
      */
     public static String longestPalindrome() {
-        String s = "aaa";
+//        String s = "aaa";
+        String s = "dcbabcd";
 
         if (s == null || s.length() < 1) return "";
         int start = 0, end = 0;
+
         for (int i = 0; i < s.length(); i++) {
             int len1 = expandAroundCenter(s, i, i);
-            System.out.println(len1);
             int len2 = expandAroundCenter(s, i, i + 1);
 
             int len = Math.max(len1, len2);
-
+            System.out.println("len Max: " + len + " i " + i);
             if (len > end - start) {
                 start = i - (len - 1) / 2;
                 end = i + len / 2;
@@ -83,14 +303,25 @@ public class Interview {
         return s.substring(start, end + 1);
     }
 
+    /**
+     * @param s     需要扩展的字符串
+     * @param left  扩展字符串左索引
+     * @param right 扩展字符串右索引
+     * @return
+     */
     private static int expandAroundCenter(String s, int left, int right) {
         int L = left, R = right;
         while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
             L--;
             R++;
         }
-        return R - L - 1;
+        System.out.println("L: " + L);
+        System.out.println("R: " + R);
+        int len = R - L - 1;
+        System.out.println("LEN: " + len);
+        return len;
     }
+
     /**
      * 给定一个字符串，找出不含有重复字符的最长子串的长度。
      * <p>

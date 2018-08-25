@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.stayli.app.R;
 import com.stayli.app.base.BaseFragment;
@@ -48,8 +49,9 @@ public class VisibilityFragment extends BaseFragment {
     }
 
     @Override
-    public void bindData(View view) {
+    public void bindData(final View view) {
         FragmentVisBinding binding = DataBindingUtil.bind(view);
+
         //获取所以的第三方App
 
 //        byte[] s = Base64.decode("为什么/没有出现" +
@@ -63,13 +65,43 @@ public class VisibilityFragment extends BaseFragment {
 //        Log.e(TAG, "bindData: "+decode );
 
 
-
-
 //        try {
 //            getAllThirdApps();
 //        } catch (PackageManager.NameNotFoundException | IOException e) {
 //            e.printStackTrace();
 //        }
+
+
+        binding.btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "btn1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "btn2", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.btn1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(v.getContext(), "btn1 long", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+        binding.btn2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(v.getContext(), "btn2 long", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+
     }
 
     private static final String TAG = "VisibilityFragment";
@@ -98,7 +130,7 @@ public class VisibilityFragment extends BaseFragment {
                 Enumeration<String> entries = dexFile.entries();
                 while (entries.hasMoreElements()) {// travel all classes
                     String className = entries.nextElement();
-                    Log.e(TAG, "getAllThirdApps: "+className );
+                    Log.e(TAG, "getAllThirdApps: " + className);
                 }
             } else {
                 //系统应用
