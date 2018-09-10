@@ -1,6 +1,7 @@
 package com.stayli.app.app;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.huawei.android.hms.agent.HMSAgent;
 import com.stayli.app.model.api.NetAPIManager;
@@ -12,6 +13,11 @@ import com.stayli.app.utils.Util;
 
 public class StayApp extends Application {
 
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+    }
 
     @Override
     public void onCreate() {

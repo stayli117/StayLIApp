@@ -1,5 +1,7 @@
 package com.stayli.utils;
 
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,6 +21,11 @@ public class Interview {
 
         System.out.println("原始：" + data);
         System.out.println("结果：" + buffer);
+
+        TypeToken<String, Integer> token = new TypeToken<>();
+
+        Integer abc = token.getType("123");
+
 
 //        char[] chars = reverseByCharBuffer(data.toCharArray());
 

@@ -42,6 +42,7 @@ import com.stayli.app.model.database.DbManager;
 import com.stayli.app.model.domain.DBBook;
 import com.stayli.app.model.domain.JieQi;
 import com.stayli.app.tools.adapter.frag.VpAdapter;
+import com.stayli.app.ui.act.ViewAnotherActivity;
 import com.stayli.app.ui.bd_fanyi.FanYiActivity;
 import com.stayli.app.ui.fragment.cloud.CloudFragment;
 import com.stayli.app.ui.fragment.favor.FavorFragment;
@@ -117,7 +118,6 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
         }
 
 
-
 //        int v = 123456;
 //        byte[] bytes = ByteBuffer.allocate(4).putInt(v).array();
 
@@ -163,9 +163,11 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
                         break;
 
                     case R.id.navigation_item_lock:
-
                         lock();
+                        break;
 
+                    case R.id.navigation_item_view_another:
+                        startActivity(new Intent(MainActivity.this, ViewAnotherActivity.class));
                         break;
                 }
                 return false;

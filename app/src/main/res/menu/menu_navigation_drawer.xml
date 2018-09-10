@@ -21,10 +21,10 @@
     </group>
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navigation_item_home_sub"
+            android:id="@+id/navigation_item_view_another"
             android:checked="true"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title="@string/friends" />
+            android:title="蒙版View" />
         <item
             android:id="@+id/navigation_item_message_sub"
             android:icon="@mipmap/ic_alipay_scan"

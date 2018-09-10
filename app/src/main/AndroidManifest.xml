@@ -60,8 +60,9 @@
         <activity
             android:name=".ui.qrcode.DefaultCaptureActivity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name=".ui.qrcode.WeChatCaptureActivity"
+            android:name=".ui.act.ViewAnotherActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.qrcode.AliCaptureActivity" />
         <activity android:name=".ui.bd_fanyi.FanYiActivity" />
