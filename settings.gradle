@@ -1,1 +1,1 @@
-include ':app', ':widgetli', ':zxinglite', ':lifecycle_android', ':ChannelPlugin'
+include ':app', ':widgetli', ':zxinglite', ':lifecycle_android', ':ChannelPlugin', ':kuaichuang'

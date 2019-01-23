@@ -6,8 +6,6 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author qingchen
- * @date 17-11-10
  */
 
 public class NetWork {

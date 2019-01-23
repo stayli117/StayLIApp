@@ -12,8 +12,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * @author qingchen
- * @date 17-11-10
  */
 
 public class ProfileViewModel extends ViewModel {

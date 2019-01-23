@@ -56,34 +56,34 @@ android {
 
     flavorDimensions 'mode'
 
-    productFlavors {
-        honor9 {
-            dimension 'mode'
-            versionNameSuffix 'honor9'
-        }
+//    productFlavors {
+//        honor9 {
+//            dimension 'mode'
+//            versionNameSuffix 'honor9'
+//        }
+//
+//        honor8 {
+//            dimension 'mode'
+//            versionNameSuffix 'honor8'
+//        }
+//
+//    }
+//
+//    productFlavors.all {
+//        flavor ->
+//            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+//    }
 
-        honor8 {
-            dimension 'mode'
-            versionNameSuffix 'honor8'
-        }
-
-    }
-
-    productFlavors.all {
-        flavor ->
-            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
-    }
-
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                //输出apk名称为：渠道名_版本名_时间.apk
-                def fileName = "${variant.productFlavors[0].name}_v${defaultConfig.versionName}_${releaseTime()}.apk"
-                output.outputFileName = fileName
-            }
-        }
-    }
+//    applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            def outputFile = output.outputFile
+//            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                //输出apk名称为：渠道名_版本名_时间.apk
+//                def fileName = "stayliApp_v${defaultConfig.versionName}_${releaseTime()}.apk"
+//                output.outputFileName = fileName
+//            }
+//        }
+//    }
 }
 
 
@@ -118,9 +118,9 @@ dependencies {
     implementation 'com.squareup.okio:okio:1.14.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-
-
+    implementation('com.squareup.retrofit2:converter-gson:2.3.0') {
+//        exclude group: "com.google.code.gson"
+    }
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
@@ -138,26 +138,31 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     // lifecycle
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+    //    implementation project(':kuaichuang')
+    //    configurations {
+    //        all*.exclude group: 'com.google.code.gson'
+    //    }
+
 }
 
 
 
-apply plugin: 'com.gyh.plugin'
-
-channel {
-    include 'abc'
-}
-
-// 过滤第三方jar包中的类
-jarFilters {
-    //待过滤包名
-    "com.android.support:appcompat-v7:(.*)" {
-        excludes = [
-//                'android/support/v7/app/AppCompatActivity.class', // 具体主类
-//                'android/support/v7/app/AppCompatActivity\\$(.*).class' // 内部类
-        ]
-        includes = [
-                // 需要包含的类
-        ]
-    }
-}
+//apply plugin: 'com.gyh.plugin'
+//
+//channel {
+//    include 'abc'
+//}
+//
+//// 过滤第三方jar包中的类
+//jarFilters {
+//    //待过滤包名
+//    "com.android.support:appcompat-v7:(.*)" {
+//        excludes = [
+////                'android/support/v7/app/AppCompatActivity.class', // 具体主类
+////                'android/support/v7/app/AppCompatActivity\\$(.*).class' // 内部类
+//        ]
+//        includes = [
+//                // 需要包含的类
+//        ]
+//    }
+//}

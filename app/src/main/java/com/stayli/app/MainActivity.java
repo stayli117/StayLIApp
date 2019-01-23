@@ -218,6 +218,7 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
         return true;
     }
 
+
     //处理侧边栏
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -242,6 +243,12 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+
+        if (item.getItemId()==R.id.action_notification){
+            Toast.makeText(mContext, "000000", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

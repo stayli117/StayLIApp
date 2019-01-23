@@ -6,8 +6,6 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 /**
- * @author qingchen
- * @date 17-11-10
  */
 @Database(entities = {NewsBean.class}, version = 1)
 public abstract class InfoDataBase extends RoomDatabase {

@@ -2,6 +2,7 @@ package net.people.lifecycle_android;
 
 import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qingchen.vrmr.mainactivity.AbsViewHolder;
+import com.example.qingchen.vrmr.mainactivity.MainActivity;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -103,14 +105,23 @@ public class TextFragment extends Fragment {
             }
         });
 
-
-
-
         if (adapter == null) {
             adapter = new RecyclerArrayAdapter<DbCityBean>(getActivity()) {
                 @Override
                 public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                     return new MmyViewHolder(parent);
+                }
+
+                @Override
+                public void onBindViewHolder(@NonNull BaseViewHolder holder, int position, @NonNull List<Object> payloads) {
+                    super.onBindViewHolder(holder, position, payloads);
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
             };
         }

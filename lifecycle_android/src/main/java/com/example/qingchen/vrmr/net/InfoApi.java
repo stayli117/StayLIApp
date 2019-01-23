@@ -6,8 +6,6 @@ import retrofit2.http.GET;
 import rx.Observable;
 
 /**
- * @author qingchen
- * @date 17-11-10
  */
 
 public interface InfoApi {

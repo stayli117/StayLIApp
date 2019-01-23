@@ -2,7 +2,6 @@ package com.stayli.app.base;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -36,15 +35,13 @@ public class BaseActivity extends AppCompatActivity {
 
     void initWindow2() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();//获取window
-            View decorView = window.getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorView.setSystemUiVisibility(option);
+        Window window = getWindow();//获取window
+        View decorView = window.getDecorView();
+        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        decorView.setSystemUiVisibility(option);
 
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+        window.setStatusBarColor(Color.TRANSPARENT);
     }
 
     @Override

@@ -11,8 +11,6 @@ import java.util.List;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 /**
- * @author qingchen
- * @date 17-11-10
  */
 @Dao
 public interface InfoDao {

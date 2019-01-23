@@ -3,6 +3,7 @@
           package="net.people.lifecycle_android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.example.qingchen.vrmr.MyApplication"
         android:allowBackup="true"
@@ -19,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.qingchen.vrmr.mainactivity.MainActivity">
-
+        </activity>
+        <activity android:name="com.example.qingchen.vrmr.TestActivity">
         </activity>
     </application>
 

@@ -12,8 +12,6 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import net.people.lifecycle_android.R;
 
 /**
- * @author qingchen
- * @date 17-11-12
  */
 
 

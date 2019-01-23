@@ -18,8 +18,7 @@ import rx.Observer;
 import rx.schedulers.Schedulers;
 
 /**
- * @author qingchen
- * @date 17-11-10
+
  */
 
 public class InfoRepository {
@@ -38,7 +37,8 @@ public class InfoRepository {
     }
 
     public void updateInfo() {
-        NetWork.getInfo().getInfo().subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Observer<InfoBean>() {
+        NetWork.getInfo().getInfo().subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                .subscribe(new Observer<InfoBean>() {
             @Override
             public void onCompleted() {
 

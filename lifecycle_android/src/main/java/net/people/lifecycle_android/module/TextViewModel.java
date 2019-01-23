@@ -59,9 +59,9 @@ public class TextViewModel extends ViewModel {
                         String date = DateUtils.getStringDate();
                         cityBean.setCtime(date);
                         cityBean.setDescription("abc");
-                        cityBean.setPicUrl("http://www.baidu.com" + count);
+                        cityBean.setPicUrl("http://www.baidu.com" + count + Math.random()*count);
                         cityBean.setTitle("当前时间: " + date);
-                        cityBean.setUrl("http://www.baidu.com");
+                        cityBean.setUrl("http://www.baidu.com"+count);
                         cityBean.setCity_name("北京");
                         cityBean.setLast_update("" + count * 100);
                         cityBean.setNews_id(count);

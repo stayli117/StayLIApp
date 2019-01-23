@@ -4,8 +4,6 @@ import android.arch.persistence.room.Entity;
 import android.support.annotation.NonNull;
 
 /**
- * @author qingchen
- * @date 17-11-10
  */
 @Entity(primaryKeys = {"ctime","picUrl"})
 public class NewsBean {

@@ -2,13 +2,10 @@ package com.example.qingchen.vrmr.bean;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 import java.util.List;
 
 /**
- * @author qingchen
- * @date 17-11-10
  */
 @Entity
 public class InfoBean {

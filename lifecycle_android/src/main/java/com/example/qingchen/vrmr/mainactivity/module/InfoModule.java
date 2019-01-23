@@ -11,8 +11,6 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * @author qingchen
- * @date 17-11-12
  */
 @Module
 public class InfoModule {
