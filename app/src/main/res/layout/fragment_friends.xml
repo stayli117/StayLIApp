@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="默认扫描启动" />
+            android:text="默认扫描启动"/>
 
         <Button
             android:id="@+id/wechat_start"
@@ -29,7 +29,7 @@
             android:layout_below="@+id/default_start"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="模仿微信扫描启动" />
+            android:text="模仿微信扫描启动"/>
 
         <Button
             android:id="@+id/alipay_start"
@@ -38,16 +38,25 @@
             android:layout_below="@+id/wechat_start"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="模仿支付宝 AR 扫描" />
+            android:text="模仿支付宝 AR 扫描"/>
 
         <Button
             android:id="@+id/baidu_fanyi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/wechat_start"
+            android:layout_below="@+id/alipay_start"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="百度翻译" />
+            android:text="百度翻译"/>
+
+        <Button
+            android:id="@+id/tentent_face"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/alipay_start"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="人脸识别"/>
 
 
     </RelativeLayout>

@@ -1,4 +1,4 @@
-#Wed Dec 12 17:10:42 CST 2018
+#Wed Jan 23 16:44:25 CST 2019
 base.0=D\:\\personal_res\\Demos\\StayLIApp\\lifecycle_android\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

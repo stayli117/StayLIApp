@@ -8,6 +8,8 @@ import android.view.View;
 import com.stayli.app.R;
 import com.stayli.app.base.BaseFragment;
 import com.stayli.app.databinding.FragmentFriendsBinding;
+import com.stayli.app.ui.bd_fanyi.FanYiActivity;
+import com.stayli.app.ui.face.FaceActivity;
 import com.stayli.app.ui.qrcode.AliCaptureActivity;
 import com.stayli.app.ui.qrcode.DefaultCaptureActivity;
 import com.stayli.app.ui.qrcode.WeChatCaptureActivity;
@@ -76,7 +78,15 @@ public class FriendsFragment extends BaseFragment {
         binding.baiduFanyi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), FanYiActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.tententFace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FaceActivity.class);
+                startActivity(intent);
             }
         });
     }
