@@ -20,8 +20,10 @@ import com.stayli.app.model.api.NetAPIManager;
 import com.stayli.app.model.domain.FaceInfo;
 import com.stayli.app.ui.bd_fanyi.MD5;
 import com.stayli.app.utils.AessUtil;
+import com.stayli.app.utils.ImageUtil;
 import com.stayli.app.utils.Util;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -66,6 +68,61 @@ public class FaceViewModel extends ViewModel {
         return mFaceInfo;
     }
 
+    public void loadFaceInfo(File file, final Observer<Bitmap> observer) {
+
+        if (file != null && file.exists() && file.isFile()) {
+            Observable.just(file)
+                    .observeOn(Schedulers.io())
+                    .map(new Function<File, byte[]>() {
+                        @Override
+                        public byte[] apply(File file) throws Exception {
+                            String path = file.getAbsolutePath();
+                            int degree = ImageUtil.readPictureDegree(path);
+                            Bitmap bitmap = BitmapFactory.decodeFile(path);
+                            Bitmap bitmap1 = ImageUtil.rotaingImageView(degree, 180, bitmap);
+                            Log.e(TAG, "apply: degree " + degree + " dis " + (180 - degree));
+                            // 腾讯识别 必须是图片脸部必须是朝上的
+                            return AessUtil.compressImage(bitmap1, observer);
+                        }
+                    }).map(new Function<byte[], String>() {
+                @Override
+                public String apply(byte[] bytes) throws Exception {
+                    return Base64.encodeToString(bytes, Base64.NO_WRAP);
+                }
+            }).map(new Function<String, Map<String, String>>() {
+                @Override
+                public Map<String, String> apply(String image) throws Exception {
+                    return buildParams(image);
+                }
+            }).concatMap(new Function<Map<String, String>, ObservableSource<ResponseBody>>() {
+                @Override
+                public Observable<ResponseBody> apply(Map<String, String> map) throws Exception {
+                    return mITencentFace.getFaceInfo(map);
+                }
+            }).map(new Function<ResponseBody, FaceInfo>() {
+                @Override
+                public FaceInfo apply(ResponseBody responseBody) throws Exception {
+                    Gson gson = new Gson();
+                    String string = responseBody.string();
+                    Log.e(TAG, "apply: " + string);
+                    return gson.fromJson(string, FaceInfo.class);
+                }
+            }).observeOn(AndroidSchedulers.mainThread()).subscribe(new ApiObserverCallBack<FaceInfo>() {
+                @Override
+                public void onSuccess(FaceInfo faceInfo) {
+                    mFaceInfo.setValue(faceInfo);
+                }
+
+                @Override
+                public void onFinal() {
+
+                }
+            });
+//                InputStream inputStream = new FileInputStream(file);
+//                loadFaceInfo(inputStream, observer);
+        }
+    }
+
     public void loadFaceInfo(InputStream inputStream, final Observer<Bitmap> observer) {
         Observable.just(inputStream)
                 .observeOn(Schedulers.io())
@@ -75,7 +132,7 @@ public class FaceViewModel extends ViewModel {
                         byte[] bytes = AessUtil.getFromAssetsImage(inputStream);
                         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                         observer.onChanged(bitmap);
-                        byte[] bytes1 = AessUtil.compressImage(bitmap);
+                        byte[] bytes1 = AessUtil.compressImage(bitmap, observer);
                         String faceData = Base64.encodeToString(bytes1, Base64.NO_WRAP);
                         if (TextUtils.isEmpty(faceData)) {
                             return null;
@@ -164,7 +221,7 @@ public class FaceViewModel extends ViewModel {
         String uuidS = uuid.toString().trim().replaceAll("-", "");
         map.put("app_id", ITencentFace.APP_ID);
         map.put("image", image);
-        map.put("mode", "0");
+        map.put("mode", "1");
         map.put("nonce_str", uuidS);
         map.put("time_stamp", TimeUnit.MILLISECONDS.toSeconds(l) + "");
         String sign = getReqSign(map);
@@ -210,6 +267,7 @@ public class FaceViewModel extends ViewModel {
 
         return sortMap;
     }
+
 
     class MapKeyComparator implements Comparator<String> {
 

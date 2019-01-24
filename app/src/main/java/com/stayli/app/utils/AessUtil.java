@@ -1,5 +1,6 @@
 package com.stayli.app.utils;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -70,21 +71,23 @@ public class AessUtil {
      * 质量压缩方法
      *
      * @param image
+     * @param observer
      * @return
      */
-    public static byte[] compressImage(Bitmap image) {
-        ByteArrayOutputStream baos = compressSampling(image);
+    public static byte[] compressImage(Bitmap image, Observer<Bitmap> observer) {
+        ByteArrayOutputStream baos = compressSampling(image, observer);
         byte[] bytes = baos.toByteArray();
         Log.d(TAG, "compressImage: " + bytes.length);
         return bytes;
     }
 
     private static final String TAG = "AessUtil";
-    private static ByteArrayOutputStream compressSampling(Bitmap bitmap) {
+
+    private static ByteArrayOutputStream compressSampling(Bitmap bitmap, Observer<Bitmap> observer) {
 
         int bitmapSize = getBitmapSize(bitmap);
         double fileSize = FileSizeUtil.FormetFileSize(bitmapSize, SIZETYPE_KB);
-        Log.e(TAG, "compressSampling1: "+fileSize );
+        Log.e(TAG, "compressSampling1: " + fileSize);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         if (fileSize <= 100) {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
@@ -102,8 +105,9 @@ public class AessUtil {
             bitmapSize = getBitmapSize(bitmap1);
             fileSize = FileSizeUtil.FormetFileSize(bitmapSize, SIZETYPE_KB);
         }
+        observer.onChanged(bitmap1);
         ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
-        Log.e(TAG, "compressSampling: "+fileSize );
+        Log.e(TAG, "compressSampling: " + fileSize);
         if (bitmap1 != null) {
             bitmap1.compress(Bitmap.CompressFormat.PNG, 100, baos1);
         }

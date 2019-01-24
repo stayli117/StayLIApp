@@ -95,7 +95,7 @@ public class BaseActivity extends AppCompatActivity {
                 Toast.makeText(mContext, hint ? "收费WIFI" : "", Toast.LENGTH_SHORT).show();
             }
         } catch (NoExtAPIException e) {
-            Log.e(TAG, "onResume: 非华为手机 热点识别失败", e);
+            Log.e(TAG, "onResume: 非华为手机 热点识别失败");
         }
 
 
