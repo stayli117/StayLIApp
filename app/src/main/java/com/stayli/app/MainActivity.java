@@ -49,6 +49,7 @@ import com.stayli.app.ui.fragment.favor.FavorFragment;
 import com.stayli.app.ui.fragment.friends.FriendsFragment;
 import com.stayli.app.ui.fragment.music.MusicFragment;
 import com.stayli.app.ui.fragment.visibility.VisibilityFragment;
+import com.stayli.app.ui.shudu.ShuduActivity;
 import com.stayli.app.utils.DateUtils;
 import com.stayli.app.utils.DrawableUtil;
 import com.stayli.app.utils.SPUtils;
@@ -169,6 +170,10 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
                     case R.id.navigation_item_view_another:
                         startActivity(new Intent(MainActivity.this, ViewAnotherActivity.class));
                         break;
+
+                    case R.id.navigation_item_message_sub:
+                        startActivity(new Intent(MainActivity.this, ShuduActivity.class));
+                        break;
                 }
                 return false;
             }
@@ -244,7 +249,7 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
             return true;
         }
 
-        if (item.getItemId()==R.id.action_notification){
+        if (item.getItemId() == R.id.action_notification) {
             Toast.makeText(mContext, "000000", Toast.LENGTH_SHORT).show();
             return true;
         }

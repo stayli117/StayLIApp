@@ -15,18 +15,12 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
     <uses-permission android:name="com.huawei.permission.INTELLIGENT_NOTIFICATION_MSG_BRACELET"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <!-- HMS-SDK引导升级HMS功能，访问OTA服务器需要网络权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/> <!-- HMS-SDK引导升级HMS功能，访问OTA服务器需要网络权限 -->
     <!-- HMS-SDK引导升级HMS功能，保存下载的升级包需要SD卡写权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!-- 检测网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!-- 检测wifi状态 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <!-- 为了获取用户手机的IMEI，用来唯一的标识用户。 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-
-    <!-- 如果是安卓8.0，应用编译配置的targetSdkVersion>=26，请务必添加以下权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- 检测网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- 检测wifi状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> <!-- 为了获取用户手机的IMEI，用来唯一的标识用户。 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/> <!-- 如果是安卓8.0，应用编译配置的targetSdkVersion>=26，请务必添加以下权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
@@ -37,6 +31,9 @@
         android:roundIcon="@mipmap/jing_pic_hd"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.shudu.ShuduActivity">
+        </activity>
+
         <meta-data
             android:name="com.huawei.hms.client.appid"
             android:value="appid=100309351"/>
@@ -163,9 +160,7 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process=":alarm"/>
-
-        <!-- <receiver -->
+            android:process=":alarm"/> <!-- <receiver -->
         <!-- android:name=".listener.MyDeviceReceiver" -->
         <!-- android:enabled="true" -->
         <!-- android:exported="true" -->
@@ -173,13 +168,10 @@
         <!-- <meta-data -->
         <!-- android:name="android.app.device_admin" -->
         <!-- android:resource="@xml/device_admin_sample" /> -->
-
-
         <!-- <intent-filter> -->
         <!-- <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" /> -->
         <!-- </intent-filter> -->
         <!-- </receiver> -->
-
         <service
             android:name=".listener.NLService"
             android:exported="true"

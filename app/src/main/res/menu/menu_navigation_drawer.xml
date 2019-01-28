@@ -5,38 +5,38 @@
             android:id="@+id/navigation_item_home"
             android:checked="true"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title="@string/friends" />
+            android:title="@string/friends"/>
         <item
             android:id="@+id/navigation_item_aStar"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title="aStar" />
+            android:title="aStar"/>
         <item
             android:id="@+id/navigation_item_fanyi"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title="翻译" />
+            android:title="翻译"/>
         <item
             android:id="@+id/navigation_item_lock"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title=" 锁屏" />
+            android:title=" 锁屏"/>
     </group>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_item_view_another"
             android:checked="true"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title="蒙版View" />
+            android:title="蒙版View"/>
         <item
             android:id="@+id/navigation_item_message_sub"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title="@string/friends" />
+            android:title="数独"/>
         <item
             android:id="@+id/navigation_item_friends_sub"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title="@string/friends" />
+            android:title="@string/friends"/>
         <item
             android:id="@+id/navigation_item_discussion_sub"
             android:icon="@mipmap/ic_alipay_scan"
-            android:title="@string/friends" />
+            android:title="@string/friends"/>
     </group>
     <item
         android:id="@+id/navigation_subheader"
@@ -46,12 +46,12 @@
                 android:id="@+id/navigation_sub_item_1"
                 android:checkable="true"
                 android:icon="@mipmap/ic_alipay_scan"
-                android:title="@string/friends" />
+                android:title="@string/friends"/>
             <item
                 android:id="@+id/navigation_sub_item_2"
                 android:checkable="true"
                 android:icon="@mipmap/ic_alipay_scan"
-                android:title="@string/friends" />
+                android:title="@string/friends"/>
         </menu>
     </item>
 
