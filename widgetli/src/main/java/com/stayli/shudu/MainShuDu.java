@@ -71,9 +71,13 @@ public class MainShuDu {
      * @param resultArray 前面（resultIndex-1）个的填空结果
      * @param resultIndex 选择索引，从0开始
      * @param checkCross  是否是对角线数独
+
      */
     public static void sudoSelect(String[] dataArray, final String[][] resultArray, int resultIndex, boolean checkCross) {
+
         int resultLen = resultArray.length;
+
+         // printResult(resultArray);
         if (resultIndex >= (int) Math.pow(resultLen, 2)) {
             // 全部填完时，输出排列结果
             printResult(resultArray);
@@ -106,6 +110,7 @@ public class MainShuDu {
         for (int i = 0; i < arrayLen; i++) {
             System.out.println(Arrays.asList(resultArray[i]));
         }
+
     }
 
     /**

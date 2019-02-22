@@ -7,7 +7,7 @@ android {
         release {
             keyAlias 'gyh'
             keyPassword '123456'
-            storeFile file('D:/personal_res/Demos/StayLIApp/sign/gyh')
+            storeFile file('/Users/yahuigao/StudioProjects/StayLIApp/sign/gyh')
             storePassword '123456'
         }
     }
