@@ -275,9 +275,9 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
 
     //初始化主页面
     private void initView() {
-        bind.bnve.enableAnimation(false);
-        bind.bnve.enableItemShiftingMode(false);
-        bind.bnve.enableShiftingMode(false);
+//        bind.bnve.enableAnimation(false);
+//        bind.bnve.enableItemShiftingMode(false);
+//        bind.bnve.enableShiftingMode(false);
         VpAdapter adapter = new VpAdapter(getSupportFragmentManager(), fragmentList);
         bind.vp.setScroll(false);
         bind.vp.setOffscreenPageLimit(4);
@@ -302,7 +302,7 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
             @Override
             public void currentNo2Position(int position) {
                 //设置底部导航选中
-                bind.bnve.setCurrentItem(position);
+                bind.bnve.setSelectedItemId(position);
                 // 恢复悬浮按钮初始化的样式
                 bind.fab.setBackgroundTintList(mBackgroundTintList);
             }
@@ -326,7 +326,7 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
             @Override
             public void current2Position() {
                 //设置底部导航选中
-                bind.bnve.setCurrentItem(2);
+                bind.bnve.setSelectedItemId(R.id.i_empty);
             }
         });
 
@@ -401,21 +401,21 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
 //        });
 
 
-        DBInterface dbInterface = NetAPIManager.getInstance().getRetrofit(DBInterface.BASE_URL).create(DBInterface.class);
-        String s = "v2/book/1220562";
-        Call<DBBook> dbCall = dbInterface.getTestBook(s);
-        Log.e(TAG, "onClickFab: " + dbCall.request().url().url());
-        dbCall.enqueue(new Callback<DBBook>() {
-            @Override
-            public void onResponse(Call<DBBook> call, Response<DBBook> response) {
-                Log.e(TAG, "onResponse: " + response.body().author);
-            }
-
-            @Override
-            public void onFailure(Call<DBBook> call, Throwable t) {
-
-            }
-        });
+//        DBInterface dbInterface = NetAPIManager.getInstance().getRetrofit(DBInterface.BASE_URL).create(DBInterface.class);
+//        String s = "v2/book/1220562";
+//        Call<DBBook> dbCall = dbInterface.getTestBook(s);
+//        Log.e(TAG, "onClickFab: " + dbCall.request().url().url());
+//        dbCall.enqueue(new Callback<DBBook>() {
+//            @Override
+//            public void onResponse(Call<DBBook> call, Response<DBBook> response) {
+//                Log.e(TAG, "onResponse: " + response.body().author);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<DBBook> call, Throwable t) {
+//
+//            }
+//        });
     }
 
     public void getJiqQiApi(final int year) {

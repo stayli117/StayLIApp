@@ -19,13 +19,18 @@ import retrofit2.http.QueryMap;
 
 /**
  * Created by yhgao on 2018/2/9.
+ * <p>
+ * https://api.douban.com/v2/book/user/jinger/collections?start1&count=20&apiKey=07c78782db00a121175696889101e363
  */
 
 @BaseUrl("https://api.douban.com/")
 public interface DBInterface {
+    String HOST="api.douban.com";
     static final String URL = "https://api.douban.com/v2/book/1220562";
     static final String BASE_URL = "https://api.douban.com/";
     static final String BASE_URL_BOOK_Con = "https://api.douban.com/v2/book/user/jinger/collections";
+
+    String API_KEY = "0dad551ec0f84ed02907ff5c42e8ec70";
 
     @GET("v2/book/{bookId}")
     Call<DBBook> getBook(@Path("bookId") String bookId);

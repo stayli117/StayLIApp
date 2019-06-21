@@ -1,11 +1,14 @@
 package com.stayli.app.model.api;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.stayli.app.anno.BaseUrl;
 
+import java.io.IOException;
 import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,7 +19,12 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ConnectionPool;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -30,6 +38,7 @@ public class NetAPIManager {
 
     private Gson gson;
     private OkHttpClient client;
+    private String mDoubanApiKey;
 
 
     private static interface Signal {
@@ -51,11 +60,36 @@ public class NetAPIManager {
                 //配置你的Gson
                 .setDateFormat("yyyy-MM-dd hh:mm:ss")
                 .create();
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(@NonNull String message) {
+                Log.i("NetAPIManager", "message -> " + message);
+            }
+        });
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 
         ConnectionPool pool = new ConnectionPool(5, 30, TimeUnit.SECONDS);
         client = new OkHttpClient.Builder()
                 .connectionPool(pool)
+                .addInterceptor(loggingInterceptor)
+                .addNetworkInterceptor(new Interceptor() {
+                    @NonNull
+                    @Override
+                    public Response intercept(@NonNull Chain chain) throws IOException {
+                        Request request = chain.request();
+                        HttpUrl url = request.url();
+                        String host = url.host();
+                        boolean equals = DBInterface.HOST.equals(host);
+                        if (equals) {
+                            url = url.newBuilder()
+                                    .addQueryParameter("apiKey", getDoubanApiKey())
+                                    .build();
+                            request = request.newBuilder().url(url).build();
+                        }
+                        return chain.proceed(request);
+                    }
+                })
                 .build();
 
         mRetrofit = new Retrofit.Builder()
@@ -76,18 +110,18 @@ public class NetAPIManager {
                 .build();
     }
 
-    private final Map<Class,Proxy> serviceCache = new ConcurrentHashMap<>();
+    private final Map<Class, Proxy> serviceCache = new ConcurrentHashMap<>();
 
     public <T> T create(Class<T> clazz) {
         if (!clazz.isInterface()) {
             throw new IllegalArgumentException("API declarations must be interfaces.");
         }
         BaseUrl annotation = clazz.getAnnotation(BaseUrl.class);
-        if (annotation==null){
+        if (annotation == null) {
             throw new IllegalArgumentException("No BaseUrl annotation exists");
         }
         String baseUrl = annotation.value();
-        if (TextUtils.isEmpty(baseUrl)){
+        if (TextUtils.isEmpty(baseUrl)) {
             throw new IllegalArgumentException("BaseUrl is null");
         }
 
@@ -112,9 +146,17 @@ public class NetAPIManager {
         return (T) result;
     }
 
+    public void setDoubanApiKey(String apiKey) {
+        mDoubanApiKey = apiKey;
+    }
 
-
-//    public static <K extends T,T extends BaseFragment> K getT(Class<K> clazz){
+    public String getDoubanApiKey() {
+        if (TextUtils.isEmpty(mDoubanApiKey)) {
+            mDoubanApiKey = DBInterface.API_KEY;
+        }
+        return mDoubanApiKey;
+    }
+    //    public static <K extends T,T extends BaseFragment> K getT(Class<K> clazz){
 //
 //        T t = (T) new BaseFragment();
 //
@@ -133,6 +175,7 @@ public class NetAPIManager {
 
     /**
      * 插入观察者-泛型
+     *
      * @param observable
      * @param observer
      * @param <T>

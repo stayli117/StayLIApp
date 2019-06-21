@@ -22,13 +22,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.stayli.app.R;
-import com.stayli.app.tools.adapter.recycle.BaseRecycleAdapter;
-import com.stayli.app.tools.adapter.recycle.BaseViewHolder;
+import com.stayli.app.base.BaseActivity;
 import com.stayli.app.model.api.DBInterface;
 import com.stayli.app.model.api.NetAPIManager;
-import com.stayli.app.base.BaseActivity;
 import com.stayli.app.model.domain.DBBookCollection;
 import com.stayli.app.model.domain.TagBean;
+import com.stayli.app.tools.adapter.recycle.BaseRecycleAdapter;
+import com.stayli.app.tools.adapter.recycle.BaseViewHolder;
 import com.stayli.app.tools.helper.ToolbarColorizeHelper;
 import com.stayli.app.utils.PaletteUtil;
 import com.stayli.app.utils.Util;
@@ -53,6 +53,7 @@ public class BookDetailActivity extends BaseActivity {
     private CollapsingToolbarLayout mToolbarCtl;
     private ImageView mHeaderIv;
     private RecyclerView mContentRv;
+
     private static final String TAG = "BookDetailActivity";
     private LinearLayout mLayout;
     private String mBookId;
@@ -68,8 +69,10 @@ public class BookDetailActivity extends BaseActivity {
         mHeaderIv = (ImageView) findViewById(R.id.iv_header);
         mContentRv = findViewById(R.id.sv_content);
 
+
         mLayout = (LinearLayout) findViewById(R.id.ll_layout);
         ViewCompat.setNestedScrollingEnabled(mContentRv, true);
+
 
 
         final DBBookCollection.CollectionsBean.BookBean index = getIntent().getParcelableExtra(EXTRA_INDEX);

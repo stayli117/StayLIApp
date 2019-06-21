@@ -1,5 +1,6 @@
 package com.stayli.app.ui.act;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -11,8 +12,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -25,14 +29,19 @@ import com.huawei.android.hms.agent.push.handler.GetTokenHandler;
 import com.stayli.app.MainActivity;
 import com.stayli.app.R;
 import com.stayli.app.listener.NLService;
+import com.stayli.app.model.api.NetAPIManager;
 import com.stayli.app.utils.CountDownTimerUtils;
+import com.stayli.app.utils.DoubanUtils;
+import com.stayli.app.utils.PermissionHelper;
+import com.stayli.app.utils.PermissionInterface;
+import com.stayli.app.utils.SPUtils;
 import com.stayli.app.utils.Util;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements PermissionInterface {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -104,13 +113,16 @@ public class SplashActivity extends AppCompatActivity {
     };
     private CountDownTimerUtils countDownTimer;
 
+    private PermissionHelper mPermissionHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
-
+        //初始化并发起权限申请
+        mPermissionHelper = new PermissionHelper(this, this);
+        mPermissionHelper.requestPermissions();
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
@@ -130,8 +142,27 @@ public class SplashActivity extends AppCompatActivity {
 
         FrameLayout mflBg = findViewById(R.id.fl_bg_splash);
         mflBg.setBackgroundResource(R.drawable.bitmap_splash_bg);
-
-
+        String apiV2ApiKey = SPUtils.getInstance().getString("apiV2ApiKey");
+        if (TextUtils.isEmpty(apiV2ApiKey)) {
+            if (DoubanUtils.isInstalled(this)) {
+                //获取豆瓣apiKey
+                DoubanUtils.GetApiKeyAndSecretReturnValue apiKeyAndSecret =
+                        DoubanUtils.getApiKeyAndSecret(this);
+                Log.d(TAG, "initData: " + apiKeyAndSecret);
+                apiV2ApiKey = apiKeyAndSecret.apiV2ApiKey;
+                if (!TextUtils.isEmpty(apiV2ApiKey)) {
+                    SPUtils.getInstance().put("apiV2ApiKey", apiV2ApiKey);
+                }
+            } else {
+                DoubanUtils.installApp(this);
+            }
+        }
+        Log.d(TAG, "initData: apiKey " + apiV2ApiKey);
+        if (TextUtils.isEmpty(apiV2ApiKey)) {
+            Toast.makeText(this, "豆瓣 apikey 获取失败", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        NetAPIManager.getInstance().setDoubanApiKey(apiV2ApiKey);
     }
 
     @Override
@@ -158,10 +189,7 @@ public class SplashActivity extends AppCompatActivity {
                 .setFinishDelegate(new CountDownTimerUtils.FinishDelegate() {
                     @Override
                     public void onFinish() {
-
-                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        startAct();
                     }
                 }).start();
 
@@ -198,6 +226,20 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private static final String TAG = "SplashActivity";
+    private static int count = 0;
+
+    private void startAct() {
+//        Log.e(TAG, "startAct: count " +count );
+//        if (count != 1) {
+//            count++;
+//            return;
+//        }
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private boolean gotoNotificationAccessSetting(Context context) {
@@ -315,5 +357,42 @@ public class SplashActivity extends AppCompatActivity {
             countDownTimer.cancel();
             countDownTimer = null;
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (mPermissionHelper.requestPermissionsResult(requestCode, permissions, grantResults)) {
+            //权限请求结果，并已经处理了该回调
+            return;
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public int getPermissionsRequestCode() {
+        return 100000;
+    }
+
+    @Override
+    public String[] getPermissions() {
+        return new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.CAMERA,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.REQUEST_INSTALL_PACKAGES,
+        };
+    }
+
+    @Override
+    public void requestPermissionsSuccess() {
+        //startAct();
+    }
+
+    @Override
+    public void requestPermissionsFail() {
+        finish();
     }
 }

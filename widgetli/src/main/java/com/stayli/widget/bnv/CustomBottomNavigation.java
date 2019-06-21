@@ -133,24 +133,24 @@ public class CustomBottomNavigation extends BottomNavigationView {
             mSmallLabel.clearAnimation();
 
             // mShiftingMode
-            boolean mShiftingMode = getField(button.getClass(), button, "mShiftingMode");
-            boolean selected = button.getItemPosition() == currentItem;
-            if (mShiftingMode) {
-                if (selected) {
-                    mLargeLabel.setVisibility(VISIBLE);
-                } else {
-                    mLargeLabel.setVisibility(INVISIBLE);
-                }
-                mSmallLabel.setVisibility(INVISIBLE);
-            } else {
-                if (selected) {
-                    mLargeLabel.setVisibility(VISIBLE);
-                    mSmallLabel.setVisibility(INVISIBLE);
-                } else {
-                    mLargeLabel.setVisibility(INVISIBLE);
-                    mSmallLabel.setVisibility(VISIBLE);
-                }
-            }
+//            boolean mShiftingMode = getField(button.getClass(), button, "mShiftingMode");
+//            boolean selected = button.getItemPosition() == currentItem;
+//            if (mShiftingMode) {
+//                if (selected) {
+//                    mLargeLabel.setVisibility(VISIBLE);
+//                } else {
+//                    mLargeLabel.setVisibility(INVISIBLE);
+//                }
+//                mSmallLabel.setVisibility(INVISIBLE);
+//            } else {
+//                if (selected) {
+//                    mLargeLabel.setVisibility(VISIBLE);
+//                    mSmallLabel.setVisibility(INVISIBLE);
+//                } else {
+//                    mLargeLabel.setVisibility(INVISIBLE);
+//                    mSmallLabel.setVisibility(VISIBLE);
+//                }
+//            }
         }
     }
 
@@ -214,7 +214,7 @@ public class CustomBottomNavigation extends BottomNavigationView {
             setItemHeight(mItemHeight);
         }
 
-        mMenuView.updateMenuView();
+//        mMenuView.updateMenuView();
     }
 
     /**
@@ -377,7 +377,7 @@ public class CustomBottomNavigation extends BottomNavigationView {
                 mLargeLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, mLargeLabelSize);
             }
         }
-        mMenuView.updateMenuView();
+//        mMenuView.updateMenuView();
     }
 
     /**
@@ -553,8 +553,8 @@ public class CustomBottomNavigation extends BottomNavigationView {
          * 1 private final BottomNavigationMenuView mMenuView;
          * 2 private BottomNavigationItemView[] mButtons;
          */
-        BottomNavigationMenuView mMenuView = getBottomNavigationMenuView();
-        mButtons = getField(mMenuView.getClass(), mMenuView, "mButtons");
+//        BottomNavigationMenuView mMenuView = getBottomNavigationMenuView();
+//        mButtons = getField(mMenuView.getClass(), mMenuView, "mButtons");
         return mButtons;
     }
 
@@ -646,7 +646,7 @@ public class CustomBottomNavigation extends BottomNavigationView {
         for (int i = 0; i < count; i++) {
             getSmallLabelAt(i).setTextSize(sp);
         }
-        mMenuView.updateMenuView();
+//        mMenuView.updateMenuView();
     }
 
     /**
@@ -694,7 +694,7 @@ public class CustomBottomNavigation extends BottomNavigationView {
         layoutParams.height = dp2px(getContext(), height);
         icon.setLayoutParams(layoutParams);
 
-        mMenuView.updateMenuView();
+//        mMenuView.updateMenuView();
     }
 
     /**
@@ -721,7 +721,7 @@ public class CustomBottomNavigation extends BottomNavigationView {
         // 2. set private final int mItemHeight in mMenuView
         setField(mMenuView.getClass(), mMenuView, "mItemHeight", height);
 
-        mMenuView.updateMenuView();
+//        mMenuView.updateMenuView();
     }
 
     /**
@@ -760,7 +760,7 @@ public class CustomBottomNavigation extends BottomNavigationView {
             getLargeLabelAt(i).setTypeface(typeface, style);
             getSmallLabelAt(i).setTypeface(typeface, style);
         }
-        mMenuView.updateMenuView();
+//        mMenuView.updateMenuView();
     }
 
     /**
@@ -774,7 +774,7 @@ public class CustomBottomNavigation extends BottomNavigationView {
             getLargeLabelAt(i).setTypeface(typeface);
             getSmallLabelAt(i).setTypeface(typeface);
         }
-        mMenuView.updateMenuView();
+//        mMenuView.updateMenuView();
     }
 
     /**
@@ -967,7 +967,7 @@ public class CustomBottomNavigation extends BottomNavigationView {
 
     @SuppressLint("RestrictedApi")
     public void enableShiftingMode(int position, boolean enable) {
-        getBottomNavigationItemView(position).setShiftingMode(enable);
+//        getBottomNavigationItemView(position).setShiftingMode(enable);
     }
 
     @SuppressLint("RestrictedApi")
@@ -1009,6 +1009,6 @@ public class CustomBottomNavigation extends BottomNavigationView {
          */
         BottomNavigationItemView itemView = getBottomNavigationItemView(position);
         setField(BottomNavigationItemView.class, itemView, "mDefaultMargin", marginTop);
-        mMenuView.updateMenuView();
+//        mMenuView.updateMenuView();
     }
 }

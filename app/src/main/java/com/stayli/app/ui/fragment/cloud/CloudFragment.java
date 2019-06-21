@@ -146,7 +146,8 @@ public class CloudFragment extends BaseFragment {
 
 
     // recycleView 适配器
-    private CommonAdapter<DBBookCollection.CollectionsBean.BookBean> adapter = new CommonAdapter<DBBookCollection.CollectionsBean.BookBean>(Util.getApplication(),
+    private CommonAdapter<DBBookCollection.CollectionsBean.BookBean> adapter =
+            new CommonAdapter<DBBookCollection.CollectionsBean.BookBean>(Util.getApplication(),
             R.layout.cloud_recyclerview_item, mCollections) {
         @Override
         protected void listIsEmpty() {

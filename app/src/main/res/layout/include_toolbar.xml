@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     app:theme="@style/OverFlowMenuTheme"
     app:title="biaoti"
-    app:popupTheme="@style/AppTheme"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     android:background="@null"
     app:layout_scrollFlags="exitUntilCollapsed"/>
 <!--知乎和网易云都是这个属性，滑动不跟随-->

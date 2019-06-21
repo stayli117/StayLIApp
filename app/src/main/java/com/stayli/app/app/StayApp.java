@@ -13,7 +13,7 @@ import com.stayli.app.utils.Util;
 
 public class StayApp extends Application {
 
-
+    private static final String TAG = "StayApp";
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
