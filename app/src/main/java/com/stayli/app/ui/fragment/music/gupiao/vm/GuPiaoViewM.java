@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 
+import com.stayli.app.model.domain.GPZhiShu;
 import com.stayli.app.ui.fragment.music.gupiao.Repo.GuPiaoRepo;
 
 public class GuPiaoViewM extends ViewModel {
@@ -13,11 +14,10 @@ public class GuPiaoViewM extends ViewModel {
 
     private GuPiaoRepo repository;
     private final MutableLiveData<String> addressInput = new MutableLiveData<>();
-    private final LiveData<String> postalCode =
-            Transformations.switchMap(addressInput, new Function<String, LiveData<String>>() {
+    private final LiveData<GPZhiShu> postalCode =
+            Transformations.switchMap(addressInput, new Function<String, LiveData<GPZhiShu>>() {
                 @Override
-                public LiveData<String> apply(String input) {
-
+                public LiveData<GPZhiShu> apply(String input) {
                     return repository.getPostalCode(input);
                 }
             });
@@ -28,9 +28,14 @@ public class GuPiaoViewM extends ViewModel {
 
     }
 
-    private LiveData<String> setInput(String address) {
-        addressInput.setValue(address);
+    // 股票 指数监听
+    public LiveData<GPZhiShu> getPostalCode() {
         return postalCode;
+    }
+
+    //  0 上证指数 1 沪深指数
+    public void setInput(String type) {
+        addressInput.setValue(type);
     }
 
 

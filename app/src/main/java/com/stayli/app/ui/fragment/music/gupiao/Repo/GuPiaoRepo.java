@@ -18,7 +18,7 @@ public class GuPiaoRepo {
 
     private final IGuPiao mGuPiao;
 
-    private final MutableLiveData<String> mRepoLiveData;
+    private final MutableLiveData<GPZhiShu> mRepoLiveData;
 
     public GuPiaoRepo() {
         mGuPiao = NetAPIManager.getInstance().create(IGuPiao.class);
@@ -26,18 +26,19 @@ public class GuPiaoRepo {
     }
 
 
-    public LiveData<String> getPostalCode(String input) {
-        Observable<GPZhiShu> guPiao = mGuPiao.getGuPiao(0);
-        guPiao.map(new Function<GPZhiShu, String>() {
+    public LiveData<GPZhiShu> getPostalCode(final String input) {
+        Observable<GPZhiShu> guPiao = mGuPiao.getGuPiao(input);
+        guPiao.map(new Function<GPZhiShu, GPZhiShu>() {
             @Override
-            public String apply(GPZhiShu gpZhiShu) throws Exception {
-                return gpZhiShu.reason;
+            public GPZhiShu apply(GPZhiShu gpZhiShu) throws Exception {
+                gpZhiShu.type = input;
+                return gpZhiShu;
             }
         }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new ApiObserverCallBack<String>() {
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new ApiObserverCallBack<GPZhiShu>() {
             @Override
-            public void onSuccess(String s) {
-
+            public void onSuccess(GPZhiShu s) {
+                mRepoLiveData.setValue(s);
             }
 
             @Override

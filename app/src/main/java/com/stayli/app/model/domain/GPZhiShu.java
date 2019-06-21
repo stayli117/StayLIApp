@@ -17,6 +17,7 @@ public class GPZhiShu {
     public String reason;
     @SerializedName("result")
     public ResultBean result;
+    public String type; // 指数类型 沪深 0 ，上证 1
 
     public static class ResultBean {
         /**
@@ -55,5 +56,32 @@ public class GPZhiShu {
         public String time;
         @SerializedName("yesPri")
         public String yesPri;
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "dealNum='" + dealNum + '\'' +
+                    ", dealPri='" + dealPri + '\'' +
+                    ", highPri='" + highPri + '\'' +
+                    ", increPer='" + increPer + '\'' +
+                    ", increase='" + increase + '\'' +
+                    ", lowpri='" + lowpri + '\'' +
+                    ", name='" + name + '\'' +
+                    ", nowpri='" + nowpri + '\'' +
+                    ", openPri='" + openPri + '\'' +
+                    ", time='" + time + '\'' +
+                    ", yesPri='" + yesPri + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "GPZhiShu{" +
+                "errorCode=" + errorCode +
+                ", reason='" + reason + '\'' +
+                ", result=" + result +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
